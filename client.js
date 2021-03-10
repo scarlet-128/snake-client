@@ -1,3 +1,4 @@
+const net = require('net');
 const connect = function() {
   const conn = net.createConnection({ 
     host: '135.23.222.131',
@@ -6,6 +7,12 @@ const connect = function() {
   });
   // interpret incoming data as text
   conn.setEncoding('utf8'); 
-  console.log("you ded cuz you idled");
+  
+  conn.on('connect', () => {
+    conn.write('Name:SUR')
+    
+    console.log('Successfully connected to game server');
+ 
   return conn;
-}
+  })
+};
